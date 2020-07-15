@@ -13,8 +13,7 @@
 
             </div>
 
-            <div style="background: #23242d" class="flex text-white justify-center rounded-b-lg p-2"
-                 :class="{ 'p-4': meta.h > 1 }">
+            <div style="background: #23242d" class="flex text-white justify-center rounded-b-lg p-2">
 
                 <template v-for="([ content, label ], index) of value">
 
@@ -53,7 +52,7 @@
     }
 
     export default {
-        props: [ 'meta' ],
+        props: [ 'meta', 'card' ],
         components: { TestChart },
         data() {
             return {
@@ -61,6 +60,12 @@
             }
         },
         computed: {
+            options() {
+                if (this.meta) {
+                    return this.meta.options
+                }
+                return this.card.options
+            },
             icon() {
                 return socialMedias[ this.meta.options.type ]
             }
